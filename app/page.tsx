@@ -1,27 +1,53 @@
-export default function IndexPage() {
+import { TaskRow, columns } from "@/components/tasks-table/columns"
+import { DataTable } from "@/components/ui/data-table"
+
+async function getData(): Promise<TaskRow[]> {
+  return [
+    {
+      id: 1,
+      title: "Finish this project",
+      status: "doing",
+      priority: "low",
+    },
+    {
+      id: 2,
+      title: "Deploy API on GCP",
+      status: "todo",
+      priority: "high",
+    },
+    {
+      id: 3,
+      title: "Deploy UI on Vercel",
+      status: "todo",
+      priority: "medium",
+    },
+    {
+      id: 4,
+      title: "Learn how to build any layout using CSS (and Tailwind CSS)",
+      status: "todo",
+      priority: "medium",
+    },
+    {
+      id: 5,
+      title: "Read React-Query Docs for data fetch",
+      status: "todo",
+      priority: "medium",
+    },
+    {
+      id: 6,
+      title: "Create Taskill-i project",
+      status: "done",
+      priority: "medium",
+    },
+  ]
+}
+
+export default async function IndexPage() {
+  const data = await getData()
+
   return (
     <section className="container grid items-center justify-center gap-6 pb-8 pt-6 md:py-10">
-      <div className="max-w-sm rounded overflow-hidden shadow-lg">
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Tailwind CSS Test</div>
-          <p className="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-        <div className="px-6 pt-4 pb-2">
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #photos
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #travel
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #winter
-          </span>
-        </div>
-      </div>
+      <DataTable columns={columns} data={data} />
     </section>
   )
 }
