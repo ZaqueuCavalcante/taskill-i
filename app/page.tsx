@@ -1,6 +1,6 @@
 export default function IndexPage() {
   return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
+    <section className="container grid items-center justify-center gap-6 pb-8 pt-6 md:py-10">
       <div className="max-w-sm rounded overflow-hidden shadow-lg">
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">Tailwind CSS Test</div>
