@@ -1,6 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
+import { TaskTableActions } from "./task-table-actions"
 
 export type TaskRow = {
   id: number
@@ -32,6 +33,14 @@ export const columns: ColumnDef<TaskRow>[] = [
     cell: ({ row }) => {
       const priority = row.getValue("priority") as string
       return <div className="text-center font-bold">{priority}</div>
+    },
+  },
+  {
+    id: "actions",
+    cell: () => {
+      return (
+        <TaskTableActions />
+      )
     },
   },
 ]
