@@ -12,7 +12,6 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { PlusCircle } from "lucide-react"
 
 import { Input } from "@/components/ui/input"
 import {
@@ -25,6 +24,7 @@ import {
 } from "@/components/ui/table"
 
 import { Button } from "./button"
+import { NewTaskButton } from "../tasks/new-task-button"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -67,10 +67,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-xs"
         />
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          New Task
-        </Button>
+        <NewTaskButton />
       </div>
 
       <div className="rounded-md border">
