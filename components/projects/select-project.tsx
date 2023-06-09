@@ -7,7 +7,13 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export function SelectProject() {
+import { Project } from "./project-card"
+
+interface SelectProjectProps {
+  projects: Project[]
+}
+
+export function SelectProject({ projects }: SelectProjectProps) {
   return (
     <div className="grid gap-2">
       <Label htmlFor="project">Project</Label>
@@ -16,10 +22,9 @@ export function SelectProject() {
           <SelectValue placeholder="Project" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="1">January</SelectItem>
-          <SelectItem value="2">February</SelectItem>
-          <SelectItem value="3">March</SelectItem>
-          <SelectItem value="4">April</SelectItem>
+          {projects.map((p) => (
+            <SelectItem value={p.id.toString()}>{p.name}</SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>

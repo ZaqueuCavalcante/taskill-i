@@ -1,3 +1,7 @@
+"use client"
+
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
 import { Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -12,11 +16,23 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+import { Project } from "../projects/project-card"
 import { SelectProject } from "../projects/select-project"
-import { SelectStatus } from "./select-status"
 import { SelectPriority } from "./select-priority"
+import { SelectStatus } from "./select-status"
+
+axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_URL}`
+axios.defaults.headers.common["Authorization"] = `${process.env.NEXT_PUBLIC_JWT}`
 
 export function NewTaskButton() {
+  const projects = useQuery({
+    queryKey: ["projects"],
+    queryFn: async () => {
+      const response = await axios.get("/projects")
+      return response.data as Project[]
+    },
+  })
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -26,6 +42,7 @@ export function NewTaskButton() {
         </Button>
       </DialogTrigger>
       <DialogContent>
+
         <DialogHeader>
           <DialogTitle>New Task</DialogTitle>
         </DialogHeader>
@@ -35,12 +52,21 @@ export function NewTaskButton() {
             <Input id="title" placeholder="Learn CSS positioning" />
           </div>
         </div>
-        <SelectProject />
-        <SelectStatus />
-        <SelectPriority />
+        <div className="grid grid-cols-3 gap-4">
+          {projects.data === undefined ? (
+            null
+          ) : (
+            <SelectProject projects={projects.data} />
+          )}
+          <SelectStatus />
+          <SelectPriority />
+        </div>
         <DialogFooter>
-          <Button>Save</Button>
+          <Button type="submit" onClick={(e) => {
+            console.log(e.target)
+          }}>Save</Button>
         </DialogFooter>
+
       </DialogContent>
     </Dialog>
   )
