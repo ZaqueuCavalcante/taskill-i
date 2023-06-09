@@ -1,19 +1,20 @@
 "use client"
 
 import * as React from "react"
-
 import {
   ColumnDef,
-  SortingState,
   ColumnFiltersState,
+  SortingState,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table"
+import { PlusCircle } from "lucide-react"
 
+import { Input } from "@/components/ui/input"
 import {
   Table,
   TableBody,
@@ -24,7 +25,6 @@ import {
 } from "@/components/ui/table"
 
 import { Button } from "./button"
-import { Input } from "@/components/ui/input"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -58,7 +58,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-2">
+      <div className="flex items-center justify-between py-2">
         <Input
           placeholder="Filter tasks..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -67,6 +67,10 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-xs"
         />
+        <Button>
+          <PlusCircle className="mr-2 h-4 w-4" />
+          New Task
+        </Button>
       </div>
 
       <div className="rounded-md border">

@@ -6,8 +6,8 @@ import { TaskTableActions } from "./task-table-actions"
 export type TaskRow = {
   id: number
   title: string
-  status: "todo" | "doing" | "done"
-  priority: "low" | "medium" | "high"
+  status: "Todo" | "Doing" | "Done"
+  priority: "Low" | "Medium" | "High"
 }
 
 export const columns: ColumnDef<TaskRow>[] = [

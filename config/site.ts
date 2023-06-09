@@ -6,15 +6,15 @@ export const siteConfig = {
   mainNav: [
     {
       title: "Projects",
-      href: "/",
+      href: "/projects",
     },
     {
       title: "Labels",
-      href: "/",
+      href: "/labels",
     },
     {
       title: "Progress",
-      href: "/",
+      href: "/progress",
     },
   ],
   links: {
