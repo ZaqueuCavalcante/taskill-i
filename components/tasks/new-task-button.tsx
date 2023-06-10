@@ -64,9 +64,7 @@ export function NewTaskButton() {
         </div>
 
         <DialogFooter>
-          <Button type="submit" onClick={(e) => {
-            console.log(e.target)
-          }}>Save</Button>
+          <Button type="submit">Save</Button>
         </DialogFooter>
 
       </DialogContent>
