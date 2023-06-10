@@ -13,7 +13,7 @@ export function SelectStatus() {
       <Label htmlFor="status">Status</Label>
       <Select>
         <SelectTrigger id="status">
-          <SelectValue placeholder="Status" />
+          <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="Todo">Todo</SelectItem>

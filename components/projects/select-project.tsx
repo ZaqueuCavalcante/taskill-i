@@ -19,7 +19,7 @@ export function SelectProject({ projects }: SelectProjectProps) {
       <Label htmlFor="project">Project</Label>
       <Select>
         <SelectTrigger id="project">
-          <SelectValue placeholder="Project" />
+          <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
           {projects.map((p) => (

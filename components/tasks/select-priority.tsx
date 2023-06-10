@@ -13,7 +13,7 @@ export function SelectPriority() {
       <Label htmlFor="priority">Priority</Label>
       <Select>
         <SelectTrigger id="priority">
-          <SelectValue placeholder="Priority" />
+          <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="High">High</SelectItem>

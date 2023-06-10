@@ -52,6 +52,7 @@ export function NewTaskButton() {
             <Input id="title" placeholder="Learn CSS positioning" />
           </div>
         </div>
+
         <div className="grid grid-cols-3 gap-4">
           {projects.data === undefined ? (
             null
@@ -61,6 +62,7 @@ export function NewTaskButton() {
           <SelectStatus />
           <SelectPriority />
         </div>
+
         <DialogFooter>
           <Button type="submit" onClick={(e) => {
             console.log(e.target)
