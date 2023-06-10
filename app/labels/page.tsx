@@ -3,16 +3,13 @@
 import { useQuery } from "@tanstack/react-query"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { Label, LabelCard } from "@/components/labels/label-card"
-
-import axios from "axios"
-axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_URL}`
-axios.defaults.headers.common["Authorization"] = `${process.env.NEXT_PUBLIC_JWT}`
+import axs from "@/config/axios-config"
 
 export default function LabelsPage() {
   const labels = useQuery({
     queryKey: ["labels"],
     queryFn: async () => {
-      const response = await axios.get("/labels")
+      const response = await axs.get("/labels")
       return response.data as Label[]
     },
   })

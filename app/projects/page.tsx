@@ -3,16 +3,13 @@
 import { useQuery } from "@tanstack/react-query"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { Project, ProjectCard } from "@/components/projects/project-card"
-
-import axios from "axios"
-axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_URL}`
-axios.defaults.headers.common["Authorization"] = `${process.env.NEXT_PUBLIC_JWT}`
+import axs from "@/config/axios-config"
 
 export default function ProjectsPage() {
   const projects = useQuery({
     queryKey: ["projects"],
     queryFn: async () => {
-      const response = await axios.get("/projects")
+      const response = await axs.get("/projects")
       return response.data as Project[]
     },
   })

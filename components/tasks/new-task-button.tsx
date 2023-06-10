@@ -1,7 +1,6 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
 import { Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -20,15 +19,13 @@ import { Project } from "../projects/project-card"
 import { SelectProject } from "../projects/select-project"
 import { SelectPriority } from "./select-priority"
 import { SelectStatus } from "./select-status"
-
-axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_URL}`
-axios.defaults.headers.common["Authorization"] = `${process.env.NEXT_PUBLIC_JWT}`
+import axs from "@/config/axios-config"
 
 export function NewTaskButton() {
   const projects = useQuery({
     queryKey: ["projects"],
     queryFn: async () => {
-      const response = await axios.get("/projects")
+      const response = await axs.get("/projects")
       return response.data as Project[]
     },
   })

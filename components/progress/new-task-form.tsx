@@ -14,9 +14,12 @@ import {
   FormLabel,
 } from "@/components/react-hook-form/form"
 
+import { useMutation } from "@tanstack/react-query"
+import { useState } from "react"
+import axs from "@/config/axios-config"
+
 const accountFormSchema = z.object({
   title: z.string(),
-  project: z.string(),
 })
 
 type AccountFormValues = z.infer<typeof accountFormSchema>
@@ -26,8 +29,21 @@ export function NewTaskForm() {
     resolver: zodResolver(accountFormSchema),
   })
 
+  const [title, setTitle] = useState('')
+
+  const { mutate } = useMutation({
+    mutationFn: async () => {
+      const body = {
+        title: title
+      }
+      await axs.post("/tasks", body)
+    },
+  })
+
   function onSubmit(data: AccountFormValues) {
+    setTitle(data.title)
     console.log(data)
+    mutate()
   }
 
   return (
@@ -41,19 +57,6 @@ export function NewTaskForm() {
               <FormLabel>Title</FormLabel>
               <FormControl>
                 <Input placeholder="Learn CSS positioning" {...field} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          name="project"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Project</FormLabel>
-              <FormControl>
-                <Input placeholder="DevOps" {...field} />
               </FormControl>
             </FormItem>
           )}
