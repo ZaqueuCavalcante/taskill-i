@@ -3,13 +3,13 @@
 import { useQuery } from "@tanstack/react-query"
 import { DataTable } from "@/components/ui/data-table"
 import { TaskRow, columns } from "@/components/tasks/columns"
-import axs from "@/config/axios-config"
+import api from "@/config/axios-config"
 
 export default function IndexPage() {
   const tasks = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const response = await axs.get("/tasks")
+      const response = await api.get("/tasks")
       return response.data as TaskRow[]
     },
   })

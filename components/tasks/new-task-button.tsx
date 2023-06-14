@@ -1,8 +1,9 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query"
-import { Plus } from "lucide-react"
+import { PlusCircle } from "lucide-react"
 
+import api from "@/config/axios-config"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -19,13 +20,12 @@ import { Project } from "../projects/project-card"
 import { SelectProject } from "../projects/select-project"
 import { SelectPriority } from "./select-priority"
 import { SelectStatus } from "./select-status"
-import axs from "@/config/axios-config"
 
 export function NewTaskButton() {
   const projects = useQuery({
     queryKey: ["projects"],
     queryFn: async () => {
-      const response = await axs.get("/projects")
+      const response = await api.get("/projects")
       return response.data as Project[]
     },
   })
@@ -33,13 +33,12 @@ export function NewTaskButton() {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button size="sm" className="relative">
-          <Plus className="mr-2 h-4 w-4" />
-          New Task
+        <Button className="relative">
+          <PlusCircle className="mr-3" />
+          Task
         </Button>
       </DialogTrigger>
       <DialogContent>
-
         <DialogHeader>
           <DialogTitle>New Task</DialogTitle>
         </DialogHeader>
@@ -50,10 +49,13 @@ export function NewTaskButton() {
           </div>
         </div>
 
+        <div>Subtasks here</div>
+        <div>Subtasks here</div>
+        <div>Subtasks here</div>
+        <div>Subtasks here</div>
+
         <div className="grid grid-cols-3 gap-4">
-          {projects.data === undefined ? (
-            null
-          ) : (
+          {projects.data === undefined ? null : (
             <SelectProject projects={projects.data} />
           )}
           <SelectStatus />
@@ -63,7 +65,6 @@ export function NewTaskButton() {
         <DialogFooter>
           <Button type="submit">Save</Button>
         </DialogFooter>
-
       </DialogContent>
     </Dialog>
   )

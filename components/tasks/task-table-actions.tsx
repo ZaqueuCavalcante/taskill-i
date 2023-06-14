@@ -1,6 +1,7 @@
 "use client"
 
-import { MoreHorizontal, FileArchive, Trash2 } from "lucide-react"
+import { FileArchive, MoreHorizontal, Trash2 } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -23,12 +24,12 @@ export function TaskTableActions() {
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-        <FileArchive className="mr-2 h-4 w-4" />
-        <span>Archive</span>
+          <FileArchive className="mr-2 h-4 w-4" />
+          <span>Archive</span>
         </DropdownMenuItem>
         <DropdownMenuItem>
-        <Trash2 className="mr-2 h-4 w-4" />
-        <span>Delete</span>
+          <Trash2 className="mr-2 h-4 w-4" />
+          <span>Delete</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

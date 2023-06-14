@@ -1,9 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+import api from "@/config/axios-config"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -14,33 +17,29 @@ import {
   FormLabel,
 } from "@/components/react-hook-form/form"
 
-import { useMutation } from "@tanstack/react-query"
-import { useState } from "react"
-import axs from "@/config/axios-config"
-
-const accountFormSchema = z.object({
+const newTaskFormSchema = z.object({
   title: z.string(),
 })
 
-type AccountFormValues = z.infer<typeof accountFormSchema>
+type NewTaskFormValues = z.infer<typeof newTaskFormSchema>
 
 export function NewTaskForm() {
-  const form = useForm<AccountFormValues>({
-    resolver: zodResolver(accountFormSchema),
+  const form = useForm<NewTaskFormValues>({
+    resolver: zodResolver(newTaskFormSchema),
   })
 
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState("")
 
   const { mutate } = useMutation({
     mutationFn: async () => {
       const body = {
-        title: title
+        title: title,
       }
-      await axs.post("/tasks", body)
+      await api.post("/tasks", body)
     },
   })
 
-  function onSubmit(data: AccountFormValues) {
+  function onSubmit(data: NewTaskFormValues) {
     setTitle(data.title)
     console.log(data)
     mutate()

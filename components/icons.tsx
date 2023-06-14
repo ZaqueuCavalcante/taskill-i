@@ -1,9 +1,9 @@
 import {
+  CheckSquare,
+  Github,
   Moon,
   SunMedium,
   Twitter,
-  CheckSquare,
-  Github,
   type Icon as LucideIcon,
 } from "lucide-react"
 

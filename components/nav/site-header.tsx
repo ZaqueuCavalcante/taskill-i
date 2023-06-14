@@ -1,8 +1,9 @@
 import { siteConfig } from "@/config/site"
-import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
+
 import { GithubLink } from "./github-link"
 import { UserNav } from "./user-nav"
+import { MainNav } from "./main-nav"
 
 export function SiteHeader() {
   return (

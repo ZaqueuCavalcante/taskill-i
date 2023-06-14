@@ -25,6 +25,7 @@ import {
 
 import { Button } from "./button"
 import { NewTaskButton } from "../tasks/new-task-button"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -65,7 +66,7 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
-          className="max-w-xs"
+          className="max-w-xs mr-52"
         />
         <NewTaskButton />
       </div>
@@ -121,13 +122,14 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
 
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-between space-x-2 py-2">
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
+          <ArrowLeft className="mr-2" />
           Previous
         </Button>
         <Button
@@ -137,6 +139,7 @@ export function DataTable<TData, TValue>({
           disabled={!table.getCanNextPage()}
         >
           Next
+          <ArrowRight className="ml-2" />
         </Button>
       </div>
     </div>

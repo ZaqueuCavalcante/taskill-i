@@ -3,13 +3,13 @@
 import { useQuery } from "@tanstack/react-query"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { Project, ProjectCard } from "@/components/projects/project-card"
-import axs from "@/config/axios-config"
+import api from "@/config/axios-config"
 
 export default function ProjectsPage() {
   const projects = useQuery({
     queryKey: ["projects"],
     queryFn: async () => {
-      const response = await axs.get("/projects")
+      const response = await api.get("/projects")
       return response.data as Project[]
     },
   })
