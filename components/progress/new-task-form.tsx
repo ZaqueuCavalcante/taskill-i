@@ -15,7 +15,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/react-hook-form/form"
+} from "@/components/forms/form"
 
 const newTaskFormSchema = z.object({
   title: z.string(),

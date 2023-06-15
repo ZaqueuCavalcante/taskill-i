@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/nav/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import QueryWrapper from "@/components/query/query-wrapper"
+import QueryWrapper from "@/config/query-wrapper"
 
 export const metadata: Metadata = {
   title: {
